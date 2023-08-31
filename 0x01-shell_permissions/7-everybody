@@ -1,2 +1,2 @@
 #!/bin/bash
-vhmod u+x,g+x,o+x hello 
+vhmod a+x hello 
