@@ -1,2 +1,2 @@
 #!/bin/bash
-vhmod a+x hello 
+chmod a+x hello 
