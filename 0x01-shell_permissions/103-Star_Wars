@@ -1,2 +1,3 @@
 #!/bin/bash
-Telnet Towel.blinkenlights.nl 
+sudo apt install telnet
+telnet towel.blinkenlights.nl 
