@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# display content of the current dir
+
+list=$(ls)
+for me in $list;
+do
+	echo "$me" | cut -d '-' -f2
+done

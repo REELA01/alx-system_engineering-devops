@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# display from 1 to 01 with condtions
+# "bad luck" for the 4th iteration
+# "good luck" for the 8th iteration
+# "Best School" for all other iterations
+
+idx=0
+
+while [ $idx -lt 10 ]
+do
+  if [ $idx -eq 3 ]
+  then
+    echo "bad luck"
+  elif [ $idx -eq 7 ]
+  then
+    echo "good luck"
+  else
+    echo "Best School"
+  fi
+  (( idx++ ))
+done

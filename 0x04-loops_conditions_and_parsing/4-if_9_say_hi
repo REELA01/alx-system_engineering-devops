@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# displayd 'Best School'. with condtion
+
+idx=0
+
+while [ $idx -lt 10 ]
+do
+	if [ $idx -eq 9 ]
+	then
+		echo "Hi"
+		echo "Best School"
+	else
+		echo "Best School"
+	fi
+	(( idx++ ))
+done
