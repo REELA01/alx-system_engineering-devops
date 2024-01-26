@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# dispaly pid
+
+echo $$

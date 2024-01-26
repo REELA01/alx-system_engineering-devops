@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#display the PID and prossec name
+
+pgrep -l bash

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Kill the task 4 prossec
+
+pkill -f 4-to_infinity_and_beyond 
