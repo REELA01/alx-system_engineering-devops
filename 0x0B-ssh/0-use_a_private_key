@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Connects to mu srever with key in ~/.ssh/school
+
+ssh -i ~/.ssh/school ubuntu@54.167.171.112
