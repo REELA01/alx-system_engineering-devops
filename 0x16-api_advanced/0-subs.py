@@ -1,16 +1,14 @@
 #!/usr/bin/python3
 """
-Script that queries subscribers on a given Reddit subreddit.
+Script to query a list of all hot posts on a given Reddit subreddit.
 """
-
-
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """gitting info"""
+    """gitting ingo"""
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:97.0) Gecko/20100101 Firefox/97.0'}
+    headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36'}
     response = requests.get(url, headers=headers, allow_redirects=False)
     if response.status_code == 200:
         data = response.json()
@@ -18,3 +16,4 @@ def number_of_subscribers(subreddit):
         return subscribers
     else:
         return 0
+
