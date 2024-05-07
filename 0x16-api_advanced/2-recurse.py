@@ -1,30 +1,14 @@
 #!/usr/bin/python3
-"""
-Script to query a list of all hot posts on a given Reddit subreddit.
-"""
-
+"""contain recurse function"""
 import requests
 
 
 def recurse(subreddit, hot_list=[], after="", count=0):
-    """
-    Recursively retrieves a list of titles of all hot posts
-    on a given subreddit.
-
-    Args:
-        subreddit (str): The name of the subreddit.
-        hot_list (list, optional): List to store the post titles.
-                                    Default is an empty list.
-        after (str, optional): Token used for pagination.
-                                Default is an empty string.
-        count (int, optional): Current count of retrieved posts. Default is 0.
-
-    Returns:
-        list: A list of post titles from the hot section of the subreddit.
-    """
+    """Returns a list of titles of all hot posts on a given subreddit."""
     url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
     headers = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
+        "User-Agent": "0x16-api_advanced:project:\
+v1.0.0 (by /u/firdaus_cartoon_jr)"
     }
     params = {
         "after": after,
@@ -40,6 +24,7 @@ def recurse(subreddit, hot_list=[], after="", count=0):
     count += results.get("dist")
     for c in results.get("children"):
         hot_list.append(c.get("data").get("title"))
+
     if after is not None:
         return recurse(subreddit, hot_list, after, count)
     return hot_list
