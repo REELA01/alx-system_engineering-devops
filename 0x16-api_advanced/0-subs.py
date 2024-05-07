@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 """
-Script to query a list of all hot posts on a given Reddit subreddit.
+Script that queries subscribers on a given Reddit subreddit.
 """
-
 
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """gitting ingo"""
+    """getting info"""
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
     headers = {'User-Agent': 'MyBot/0.1'}
     response = requests.get(url, headers=headers, allow_redirects=False)
