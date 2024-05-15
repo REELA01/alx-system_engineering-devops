@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
-# Gracefully reloads Gunicorn.
 
+# Get Gunicorn process IDs
+MASTER_PID=$(pgrep -f "gunicorn.*:app")
 
-PID=$( sudo pgrep -f 'gunicorn --bind')
+kill -HUP $MASTER_PID
 
-if [ -z "$PID" ]
-then
-  echo "Gunicorn is not running."
-else
-   sudo kill -HUP "$PID"
-  echo "Gunicorn has been gracefully reloaded."
-fi
+while pgrep -f "gunicorn.*:app" | grep -q -E "$MASTER_PID|$"; do
+    sleep 1
+done
