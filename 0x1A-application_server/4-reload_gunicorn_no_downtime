@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
+#Bash script to reload Gunicorn in a graceful way.
 
-# Get Gunicorn process IDs
-MASTER_PID=$(pgrep -f "gunicorn.*:app")
-
-kill -HUP $MASTER_PID
-
-while pgrep -f "gunicorn.*:app" | grep -q -E "$MASTER_PID|$"; do
-    sleep 1
-done
+master_pid=$(ps auxf | pgrep gunicorn | head -1)
+kill -1 "$master_pid"
