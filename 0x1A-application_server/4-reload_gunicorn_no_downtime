@@ -1,21 +1,11 @@
 #!/usr/bin/env bash
+# Gracefully reloads Gunicorn.
+# shellcheck disable=SC2009
 
-# should return list of Gunicorn process ids
-gunicorn_pids=$(pgrep gunicorn)
+# Get the process IDs of Gunicorn
+gunicorn_pids=$(ps aux | grep gunicorn | awk '{ print $2 }')
 
-if [ -z "$gunicorn_pids" ]; then
-    echo "No Gunicorn processes found."
-    exit 1
-fi
-
-# should kill workers ports
-echo "Stopping old workers gracefully..."
+# Gracefully reload each Gunicorn process
 for pid in $gunicorn_pids; do
     kill -HUP "$pid"
 done
-
-# should wait workers to finish processing
-echo "Waiting for old workers to finish processing..."
-sleep 5
-
-echo "Graceful reload complete"
