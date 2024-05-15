@@ -1,3 +1,16 @@
 #!/usr/bin/env bash
-# reload Gunicorn for no service interuption
-pkill -HUP -f gunicorn
+# A bash script that reload a gunicorn in a graceful way
+
+# Getting the PID of the gunicorn process
+gunicorn_p=$(pgrep gunicorn | head -n 1)
+
+# use the gunicorn_pid to generate the worker pid
+workers=($(pgrep -P "$gunicorn_p"))
+
+# send a SIGHUP signal to restart the gunicorn for each worker_pid
+for worker in "${workers[@]}"
+do
+    kill -SIGHUP "$worker"
+done
+
+echo "Gunicorn gracefully reloaded"
