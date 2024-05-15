@@ -1,12 +1,21 @@
 #!/usr/bin/env bash
-# Bash script to reload Gunicorn
 
-pids=$(pgrep gunicorn)
+# should return list of Gunicorn process ids
+gunicorn_pids=$(pgrep gunicorn)
 
-if [ -z "$pids" ]; then
-    echo "No Gunicorn processes found. Make sure Gunicorn is running."
-else
-    echo "Reloading Gunicorn..."
-    echo "$pids" | xargs -I {} kill -HUP {}
-    echo "Reload complete."
+if [ -z "$gunicorn_pids" ]; then
+    echo "No Gunicorn processes found."
+    exit 1
 fi
+
+# should kill workers ports
+echo "Stopping old workers gracefully..."
+for pid in $gunicorn_pids; do
+    kill -HUP "$pid"
+done
+
+# should wait workers to finish processing
+echo "Waiting for old workers to finish processing..."
+sleep 5
+
+echo "Graceful reload complete"
